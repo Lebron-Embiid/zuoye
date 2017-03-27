@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<span id="span">2017-3-27 星期一 00:00:00</span>
+	<input type="button" value="开始" id="start">
+	<input type="button" value="停止" id="stop">
+
+	<p id="p"><a id="a">10</a></p>
+	<img src="0.jpg" alt="" id="img">
+</body>
+<script>
+	window.onload = function(){
+		var start = document.getElementById("start");
+		var stop = document.getElementById("stop");
+		var p = document.getElementById("p");
+		var a = document.getElementById("a");
+		function show(){
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth()+1;
+			var day =  date.getDate();
+			var week = date.getDay();
+			var hour = date.getHours();
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+			var span = document.getElementById("span");
+			switch(week){
+				case 1:week = "星期一";
+						break;
+				case 2:week = "星期二";
+						break;
+				case 3:week = "星期三";
+						break;
+				case 4:week = "星期四";
+						break;
+				case 5:week = "星期五";
+						break;
+				case 6:week = "星期六";
+						break;
+				default: week = "星期日";
+			}
+			if(hour < 10){
+				hour = "0"+hour;
+			}
+			if(minute < 10){
+				minute = "0"+minute;
+			}
+			if(second < 10){
+				second = "0"+second;
+			}
+			var s = year+"-"+month+"-"+day+" "+week+" "+hour+":"+minute+":"+second;
+			span.innerHTML = s;
+		};
+		var timer = setInterval(show,1000);
+		start.onclick = function(){
+			timer = setInterval(show,1000);
+		}
+		stop.onclick =function(){
+			clearInterval(timer);
+		};
+	}
+
+
+	//倒计时
+	// var num = 10;
+	// function Interval(){
+	// 	num--;
+	// 	a.innerHTML = num;
+	// 	if(num <= 0){
+	// 		clearInterval(test);
+	// 		a.innerHTML = "";
+	// 		p.innerHTML = "";
+	// 	}
+	// }
+	// var test = setInterval(Interval,1000);
+	//随机数
+	function img(){
+		var img = document.getElementById("img");
+		var random = Math.floor(Math.random()*10);
+		img.src = random+".jpg";
+	}
+	
+	var s = setInterval(img,1000);
+
+
+	//数组
+	var arr = new Array("lebron","harden","westbrook","curry","wade","anthony");
+	arr.push("paul");
+	arr.unshift("James");
+	arr.splice(2,0,"durant");
+	// arr.pop();
+	// arr.shift();
+	for(var i=0;i<arr.length;i++){
+		document.write("<br>"+arr[i]);
+	}
+</script>
+</html>
